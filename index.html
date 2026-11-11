@@ -753,6 +753,140 @@
       }
     }
 
+    /* Contact Modal */
+    dialog.contact-dialog {
+      margin: auto;
+      width: min(440px, calc(100vw - 2rem));
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      box-shadow:
+        0 24px 64px -16px rgba(0, 0, 0, 0.85),
+        0 0 36px rgba(245, 158, 11, 0.1);
+    }
+
+    dialog.contact-dialog::backdrop {
+      background-color: rgba(5, 5, 7, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .dialog-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .dialog-title {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .dialog-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-base);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition:
+        border-color 0.2s var(--ease-out),
+        color 0.2s var(--ease-out);
+    }
+
+    .dialog-close:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    .dialog-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .email-copy-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.7rem 0.75rem 0.7rem 1rem;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 1.125rem;
+    }
+
+    .email-copy-value {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      user-select: all;
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      background-color: var(--accent-subtle);
+      color: var(--accent-soft);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition:
+        background-color 0.2s var(--ease-out),
+        border-color 0.2s var(--ease-out);
+    }
+
+    .btn-copy:hover {
+      background-color: rgba(245, 158, 11, 0.16);
+      border-color: var(--accent);
+    }
+
+    .btn-copy[data-copied="true"] {
+      background-color: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+    }
+
+    .dialog-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .dialog-actions .btn-primary,
+    .dialog-actions .btn-secondary {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 480px) {
+      .dialog-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -787,6 +921,7 @@
       <a
         href="mailto:contact@goldenstarstudio.com"
         class="nav-contact"
+        data-contact-modal
         aria-label="Email GoldenStar Studio at contact@goldenstarstudio.com"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -817,7 +952,7 @@
         </p>
 
         <div class="hero-actions">
-          <a href="mailto:contact@goldenstarstudio.com" class="btn-primary">
+          <a href="mailto:contact@goldenstarstudio.com" class="btn-primary" data-contact-modal>
             <span>Get in Touch</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14" />
@@ -986,7 +1121,7 @@
       </div>
 
       <div class="footer-links">
-        <a href="mailto:contact@goldenstarstudio.com" class="footer-email">
+        <a href="mailto:contact@goldenstarstudio.com" class="footer-email" data-contact-modal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="4" width="20" height="16" rx="3" />
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -996,5 +1131,108 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact Modal -->
+  <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-dialog-title">
+    <div class="dialog-head">
+      <h2 id="contact-dialog-title" class="dialog-title">Contact GoldenStar Studio</h2>
+      <button type="button" id="contact-close" class="dialog-close" aria-label="Close contact dialog">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <p class="dialog-desc">
+      Reach out directly for startup evaluations, cloud partnerships, or technical inquiries.
+    </p>
+
+    <div class="email-copy-box">
+      <span class="email-copy-value">contact@goldenstarstudio.com</span>
+      <button type="button" id="copy-email-btn" class="btn-copy" data-copied="false">
+        <span id="copy-email-label">Copy</span>
+      </button>
+    </div>
+
+    <div class="dialog-actions">
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@goldenstarstudio.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Open in Gmail
+      </a>
+      <a href="mailto:contact@goldenstarstudio.com" class="btn-secondary">
+        Open Mail App
+      </a>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      const dialog = document.getElementById('contact-dialog');
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+
+      const closeBtn = document.getElementById('contact-close');
+      const copyBtn = document.getElementById('copy-email-btn');
+      const copyLabel = document.getElementById('copy-email-label');
+      const email = 'contact@goldenstarstudio.com';
+      let resetTimer = null;
+
+      document.querySelectorAll('[data-contact-modal]').forEach(function (trigger) {
+        trigger.addEventListener('click', function (event) {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          dialog.showModal();
+        });
+      });
+
+      closeBtn.addEventListener('click', function () {
+        dialog.close();
+      });
+
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog) {
+          dialog.close();
+        }
+      });
+
+      function markCopied() {
+        copyBtn.setAttribute('data-copied', 'true');
+        copyLabel.textContent = 'Copied';
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          copyBtn.setAttribute('data-copied', 'false');
+          copyLabel.textContent = 'Copy';
+        }, 2000);
+      }
+
+      copyBtn.addEventListener('click', function () {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(markCopied).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      function fallbackCopy() {
+        const area = document.createElement('textarea');
+        area.value = email;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand('copy');
+          markCopied();
+        } finally {
+          document.body.removeChild(area);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
