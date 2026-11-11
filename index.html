@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoldenStar Studio — Crafting Next-Gen Physics &amp; AI-Driven Gameplay</title>
+  <meta
+    name="description"
+    content="GoldenStar Studio is an independent game studio building Unity-powered physics mechanics, anti-gravity controllers, and AI-driven production pipelines."
+  />
+  <meta name="author" content="GoldenStar Studio" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <link rel="canonical" href="https://goldenstarstudio.com/" />
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GoldenStar Studio" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://goldenstarstudio.com/" />
+  <meta property="og:title" content="GoldenStar Studio — Crafting Next-Gen Physics &amp; AI-Driven Gameplay" />
+  <meta
+    property="og:description"
+    content="Independent game studio engineering high-precision Unity physics systems, anti-gravity vehicle controllers, and autonomous AI development workflows."
+  />
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GoldenStar Studio — Crafting Next-Gen Physics &amp; AI-Driven Gameplay" />
+  <meta
+    name="twitter:description"
+    content="Independent game studio engineering high-precision Unity physics systems, anti-gravity vehicle controllers, and autonomous AI development workflows."
+  />
+
+  <!-- Inline SVG Favicon -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Cpath d='M16 4l2.8 9.2L28 16l-9.2 2.8L16 28l-2.8-9.2L4 16l9.2-2.8z' fill='%23f59e0b'/%3E%3C/svg%3E"
+  />
+
+  <!-- Typography: Google Fonts Inter with modern system sans-serif fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "GoldenStar Studio",
+      "url": "https://goldenstarstudio.com/",
+      "email": "contact@goldenstarstudio.com",
+      "description": "Independent game development studio crafting Unity-based physics mechanics, anti-gravity controllers, and AI-driven workflows."
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-base: #0a0a0c;
+      --bg-card: #131318;
+      --bg-card-elevated: #17171e;
+      --border-subtle: #22222b;
+      --border-hover: rgba(245, 158, 11, 0.4);
+      --accent: #f59e0b;
+      --accent-soft: #fbbf24;
+      --accent-glow: rgba(245, 158, 11, 0.18);
+      --accent-subtle: rgba(245, 158, 11, 0.08);
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --container-max: 1120px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ambient studio lighting & subtle precision engineering grid */
+    .ambient-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 55% at 50% 10%, #000 15%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 10%, #000 15%, transparent 85%);
+    }
+
+    .ambient-glow {
+      position: absolute;
+      top: -220px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(960px, 120vw);
+      height: 540px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(245, 158, 11, 0.14) 0%,
+        rgba(245, 158, 11, 0.04) 42%,
+        transparent 72%
+      );
+      filter: blur(40px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    /* Header / Minimalist Navbar */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(34, 34, 43, 0.75);
+      background-color: rgba(10, 10, 12, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      transition: opacity 0.2s var(--ease-out);
+    }
+
+    .brand:hover {
+      opacity: 0.9;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.55));
+      transition: transform 0.35s var(--ease-out);
+    }
+
+    .brand-mark svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .brand:hover .brand-mark {
+      transform: rotate(22deg) scale(1.06);
+    }
+
+    .nav-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition:
+        border-color 0.25s var(--ease-out),
+        background-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+    }
+
+    .nav-contact svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-contact:hover {
+      border-color: var(--border-hover);
+      background-color: var(--bg-card-elevated);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .nav-contact-short {
+      display: none;
+    }
+
+    /* Main Layout */
+    main {
+      flex: 1 0 auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6.25rem 0 4.5rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.42rem 0.95rem;
+      margin-bottom: 1.75rem;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.11), rgba(245, 158, 11, 0.04));
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow:
+        0 0 24px rgba(245, 158, 11, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: var(--accent-soft);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.015em;
+    }
+
+    .status-dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .status-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background-color: rgba(245, 158, 11, 0.45);
+      animation: pulse-ring 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.75);
+        opacity: 0.9;
+      }
+      70%, 100% {
+        transform: scale(2.1);
+        opacity: 0;
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 5.2vw, 3.875rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 52%, #d97706 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      max-width: 660px;
+      font-size: clamp(1rem, 1.55vw, 1.15rem);
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.875rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.825rem 1.5rem;
+      border-radius: var(--radius-md);
+      background-color: var(--accent);
+      color: #0a0a0c;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      box-shadow: 0 0 28px rgba(245, 158, 11, 0.28);
+      transition:
+        background-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-soft);
+      box-shadow: 0 0 36px rgba(245, 158, 11, 0.42);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.825rem 1.4rem;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition:
+        border-color 0.25s var(--ease-out),
+        background-color 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+    }
+
+    .btn-secondary:hover {
+      border-color: #343442;
+      background-color: var(--bg-card-elevated);
+      transform: translateY(-1px);
+    }
+
+    /* Section Headings */
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.625rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    /* 3-Column Feature Cards */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .pillar-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 1.875rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition:
+        border-color 0.3s var(--ease-out),
+        background-color 0.3s var(--ease-out),
+        box-shadow 0.3s var(--ease-out),
+        transform 0.3s var(--ease-out);
+    }
+
+    .pillar-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        circle at top left,
+        rgba(245, 158, 11, 0.08),
+        transparent 55%
+      );
+      opacity: 0;
+      transition: opacity 0.3s var(--ease-out);
+      pointer-events: none;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-hover);
+      background-color: var(--bg-card-elevated);
+      box-shadow: 0 14px 36px -14px rgba(0, 0, 0, 0.75), 0 0 24px rgba(245, 158, 11, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .pillar-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: var(--accent-subtle);
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      color: var(--accent);
+      margin-bottom: 1.35rem;
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.08);
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-card p {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      flex: 1 0 auto;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(34, 34, 43, 0.8);
+    }
+
+    .spec-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background-color: rgba(10, 10, 12, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.24rem 0.52rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Tech Stack Section */
+    .stack-section {
+      padding: 2.5rem 0 5.5rem;
+    }
+
+    .stack-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .stack-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+    }
+
+    .stack-header h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .stack-header p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .stack-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      transition:
+        border-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out);
+    }
+
+    .stack-badge:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.08);
+    }
+
+    .stack-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .stack-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stack-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .stack-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .stack-role {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background-color: rgba(10, 10, 12, 0.92);
+      padding: 2.25rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .footer-logo svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent);
+      display: block;
+    }
+
+    .footer-copy {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .footer-email svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent);
+    }
+
+    .footer-email:hover {
+      color: var(--accent-soft);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 920px) {
+      .pillars-grid,
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 4.75rem 0 3.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-inline: 1.125rem;
+      }
+
+      .navbar {
+        min-height: 64px;
+      }
+
+      .nav-contact-full {
+        display: none;
+      }
+
+      .nav-contact-short {
+        display: inline;
+      }
+
+      .hero {
+        padding: 3.75rem 0 2.75rem;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .section {
+        padding: 2.75rem 0;
+      }
+
+      .pillar-card,
+      .stack-panel {
+        padding: 1.5rem;
+      }
+
+      .stack-section {
+        padding: 2rem 0 4rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-glow"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#top" class="brand" aria-label="GoldenStar Studio Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l2.35 7.65L22 12l-7.65 2.35L12 22l-2.35-7.65L2 12l7.65-2.35L12 2z" />
+          </svg>
+        </span>
+        <span>GoldenStar Studio</span>
+      </a>
+
+      <a
+        href="mailto:contact@goldenstarstudio.com"
+        class="nav-contact"
+        aria-label="Email GoldenStar Studio at contact@goldenstarstudio.com"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="3" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <span class="nav-contact-full">contact@goldenstarstudio.com</span>
+        <span class="nav-contact-short">Contact</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-inner">
+        <div class="status-badge" role="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>In Active Development</span>
+        </div>
+
+        <h1 id="hero-heading">
+          Crafting Next-Gen <span class="hero-highlight">Physics &amp; AI-Driven</span> Gameplay
+        </h1>
+
+        <p class="hero-subtitle">
+          GoldenStar Studio is an independent game studio engineering high-precision Unity physics systems, custom anti-gravity controllers, and tactile vehicle dynamics. By integrating autonomous AI workflows directly into our C# development pipeline, we accelerate iteration, automate systems balancing, and deliver responsive gameplay built for scale.
+        </p>
+
+        <div class="hero-actions">
+          <a href="mailto:contact@goldenstarstudio.com" class="btn-primary">
+            <span>Get in Touch</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#pillars" class="btn-secondary">
+            <span>Technical Architecture</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Pillars -->
+    <section id="pillars" class="section" aria-labelledby="pillars-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Engineering Focus</span>
+          <h2 id="pillars-heading" class="section-title">Core Studio Pillars</h2>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1 -->
+          <article class="pillar-card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)" />
+              </svg>
+            </div>
+            <h3>Physics-First Mechanics</h3>
+            <p>
+              Unity-based advanced anti-gravity controllers engineered with multi-point raycast suspension damping, surface-normal alignment, and modular vehicle kinematics for crisp, predictable handling.
+            </p>
+            <div class="tag-row">
+              <span class="spec-tag">Anti-Gravity</span>
+              <span class="spec-tag">Raycast Damping</span>
+              <span class="spec-tag">Kinematics</span>
+            </div>
+          </article>
+
+          <!-- Pillar 2 -->
+          <article class="pillar-card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3" />
+                <path d="M12 18v3" />
+                <path d="m4.93 4.93 2.12 2.12" />
+                <path d="m16.95 16.95 2.12 2.12" />
+                <path d="M3 12h3" />
+                <path d="M18 12h3" />
+                <path d="m4.93 19.07 2.12-2.12" />
+                <path d="m16.95 7.05 2.12-2.12" />
+                <circle cx="12" cy="12" r="4" />
+              </svg>
+            </div>
+            <h3>AI-Driven Pipeline</h3>
+            <p>
+              Autonomous coding agents and LLM integration embedded across our studio tooling to streamline C# refactoring, procedural gameplay balancing, and deterministic state machine design.
+            </p>
+            <div class="tag-row">
+              <span class="spec-tag">Coding Agents</span>
+              <span class="spec-tag">LLM Tooling</span>
+              <span class="spec-tag">State Machines</span>
+            </div>
+          </article>
+
+          <!-- Pillar 3 -->
+          <article class="pillar-card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 12 12 17 22 12" />
+                <polyline points="2 17 12 22 22 17" />
+              </svg>
+            </div>
+            <h3>Performance-First Architecture</h3>
+            <p>
+              Modular C# architecture backed by decoupled event-driven messaging, allocation-conscious simulation loops, and rock-solid stability under high physics tick-rate execution.
+            </p>
+            <div class="tag-row">
+              <span class="spec-tag">Modular C#</span>
+              <span class="spec-tag">Event-Driven</span>
+              <span class="spec-tag">High Tick-Rate</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="stack-section" aria-labelledby="stack-heading">
+      <div class="container">
+        <div class="stack-panel">
+          <div class="stack-header">
+            <div>
+              <span class="section-eyebrow">Technology Stack</span>
+              <h2 id="stack-heading">Core Runtime &amp; AI Infrastructure</h2>
+            </div>
+            <p>Built on proven real-time simulation tools and modern agentic workflows.</p>
+          </div>
+
+          <div class="stack-grid">
+            <!-- Unity Engine -->
+            <div class="stack-badge">
+              <div class="stack-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </div>
+              <div class="stack-meta">
+                <span class="stack-name">Unity Engine</span>
+                <span class="stack-role">Real-Time 3D &amp; Custom Physics</span>
+              </div>
+            </div>
+
+            <!-- C# -->
+            <div class="stack-badge">
+              <div class="stack-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                  <line x1="14" y1="4" x2="10" y2="20" />
+                </svg>
+              </div>
+              <div class="stack-meta">
+                <span class="stack-name">C# / .NET</span>
+                <span class="stack-role">Modular Event-Driven Systems</span>
+              </div>
+            </div>
+
+            <!-- Modern AI Frameworks -->
+            <div class="stack-badge">
+              <div class="stack-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="3" />
+                  <rect x="9" y="9" width="6" height="6" rx="1" />
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+                </svg>
+              </div>
+              <div class="stack-meta">
+                <span class="stack-name">Modern AI Frameworks</span>
+                <span class="stack-role">Autonomous Agents &amp; LLM Workflows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2l2.35 7.65L22 12l-7.65 2.35L12 22l-2.35-7.65L2 12l7.65-2.35L12 2z" />
+          </svg>
+          <span>GoldenStar Studio</span>
+        </div>
+        <p class="footer-copy">&copy; 2026 GoldenStar Studio. All rights reserved.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:contact@goldenstarstudio.com" class="footer-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="3" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span>contact@goldenstarstudio.com</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
